@@ -7,7 +7,8 @@
   "license": "MIT",
   "scripts": {
     "test": "jest --watchAll --silent --colors",
-    "test:staged": "jest --findRelatedTests" 
+    "test:staged": "jest --findRelatedTests",
+    "test:ci": "jest --coverage"
   },
   "standard": {
     "env": ["jest"]
