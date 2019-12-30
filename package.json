@@ -1,0 +1,8 @@
+{
+  "name": "clean-nodejs-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:higordiego/clean-nodejs-api.git",
+  "author": "Higor Diego <higordiegoti@gmail.com>",
+  "license": "MIT"
+}
