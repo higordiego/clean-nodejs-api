@@ -6,8 +6,10 @@
   "author": "Higor Diego <higordiegoti@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "test": "jest --watchAll --silent --colors",
-    "test:staged": "jest --findRelatedTests",
+    "test": "jest --silent --colors --passWithNoTests",
+    "test:unit": "yarn run test -- --watchAll -c jest-unit-config.js",
+    "test:integration": "yarn run test -- --watch -c jest-integration-config.js",
+    "test:staged": "yarn run test -- --findRelatedTests",
     "test:ci": "jest --coverage --noStackTrace --silent"
   },
   "standard": {
