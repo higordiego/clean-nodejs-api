@@ -5,7 +5,20 @@
   "repository": "git@github.com:higordiego/clean-nodejs-api.git",
   "author": "Higor Diego <higordiegoti@gmail.com>",
   "license": "MIT",
+  "lint-staged": {
+    "*.js": [
+      "standard --fix", 
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "devDependencies": {
+    "husky": "^4.0.0-beta.5",
+    "lint-staged": "^9.5.0",
     "standard": "^14.3.1"
   }
 }
