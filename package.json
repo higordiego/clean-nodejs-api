@@ -8,7 +8,7 @@
   "scripts": {
     "test": "jest --watchAll --silent --colors",
     "test:staged": "jest --findRelatedTests",
-    "test:ci": "jest --coverage"
+    "test:ci": "jest --coverage --noStackTrace --silent"
   },
   "standard": {
     "env": ["jest"]
