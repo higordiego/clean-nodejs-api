@@ -6,8 +6,8 @@
   "author": "Higor Diego <higordiegoti@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "test": "jest --watchAll",
-    "test:staged": "jest" 
+    "test": "jest --watchAll --silent --colors",
+    "test:staged": "jest --findRelatedTests" 
   },
   "standard": {
     "env": ["jest"]
