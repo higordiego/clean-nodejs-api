@@ -4,5 +4,8 @@
   "main": "index.js",
   "repository": "git@github.com:higordiego/clean-nodejs-api.git",
   "author": "Higor Diego <higordiegoti@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "standard": "^14.3.1"
+  }
 }
