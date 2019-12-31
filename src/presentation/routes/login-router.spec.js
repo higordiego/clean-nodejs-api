@@ -1,7 +1,5 @@
 const LoginRouter = require('./login-router')
-const MissingParamError = require('../helpers/missing-param-error')
-const UnauthorizedError = require('../helpers/unauthorized-error')
-const ServerError = require('../helpers/server-error')
+const { UnauthorizedError, MissingParamError, ServerError, InvalidParamError } = require('../errors')
 
 const makeSut = () => {
   const authUseCaseSpy = MakeAuthUseCase()
@@ -179,7 +177,7 @@ describe('Login Router', () => {
     }
     const httpResponse = await sut.route(httpRequest)
     expect(httpResponse.statusCode).toBe(400)
-    expect(httpResponse.body).toEqual(new MissingParamError('email'))
+    expect(httpResponse.body).toEqual(new InvalidParamError('email'))
   })
 
   test('Should return 500 if no EmailValidator is provider', async () => {
