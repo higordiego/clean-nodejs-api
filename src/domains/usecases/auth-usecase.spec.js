@@ -77,7 +77,7 @@ describe('Auth UseCase', () => {
   })
 
   test('Should throw if no LoadUserByEmailRepository has no load method', async () => {
-    const sut = new AuthUseCase({})
+    const sut = new AuthUseCase({ loadUserByEmailRepository: {} })
     const promise = sut.auth('any_email@hotmail.com', 'any_password')
     expect(promise).rejects.toThrow()
   })
