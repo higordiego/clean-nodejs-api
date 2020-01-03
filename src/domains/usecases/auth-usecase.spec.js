@@ -31,16 +31,16 @@ const makeloadUserByEmailRepository = () => {
 }
 
 const makeTokenGenerator = () => {
-  class TokenGeneratorSpy {
+  class TokenGenerator {
     async generate (userId) {
       this.userId = userId
       return this.accessToken
     }
   }
 
-  const tokenGeneratorSpy = new TokenGeneratorSpy()
-  this.accessToken = 'any_token'
-  return tokenGeneratorSpy
+  const tokenGenerator = new TokenGenerator()
+  tokenGenerator.accessToken = 'any_token'
+  return tokenGenerator
 }
 
 const makeSut = () => {
@@ -108,5 +108,12 @@ describe('Auth UseCase', () => {
     await sut.auth('valid@hotmail.com', 'any_password')
     expect(encrypterSy.password).toBe('any_password')
     expect(tokenGeneratorSpy.userId).toBe(loadUserByEmailRepository.user.id)
+  })
+
+  test('Should return and acessToken if correct credentials are provider', async () => {
+    const { sut, tokenGeneratorSpy } = makeSut()
+    const accessToken = await sut.auth('valid@hotmail.com', 'valid_password')
+    expect(accessToken).toBe(tokenGeneratorSpy.accessToken)
+    expect(accessToken).toBeTruthy()
   })
 })
