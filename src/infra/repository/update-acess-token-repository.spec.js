@@ -9,9 +9,8 @@ class UpdateAccessTokenRepository {
 
   async update (userId, accessToken) {
     if (!userId) throw new MissingParamError('id')
-    if (!accessToken) throw new MissingParamError('token')
-    const result = await this.userModel.updateOne({ _id: userId }, { $set: { accessToken } })
-    return result
+    if (!accessToken) throw new MissingParamError('accessToken')
+    await this.userModel.updateOne({ _id: userId }, { $set: { accessToken } })
   }
 }
 
@@ -41,9 +40,18 @@ describe('UpdateAcessToken Repository', () => {
     expect(updateFakeUser.accessToken).toBe('valid_token')
   })
   test('Should throw if no userModel is provided', async () => {
-    const { sut, userModel } = makeSut()
+    const sut = new UpdateAccessTokenRepository()
+    const userModel = db.collection('users')
     const fakeUser = await userModel.insertOne({ email: 'valid@mail.com', name: 'any_name', age: 50, state: 'any_state', password: 'hashed_password' })
     const promise = sut.update(fakeUser.ops[0]._id, 'valid_token')
     expect(promise).rejects.toThrow()
+  })
+
+  test('Should throw if no params are provider', async () => {
+    const { sut, userModel } = makeSut()
+    const fakeUser = await userModel.insertOne({ email: 'valid@mail.com', name: 'any_name', age: 50, state: 'any_state', password: 'hashed_password' })
+    console.log(sut.update())
+    expect(sut.update()).rejects.toThrow(new MissingParamError('userId'))
+    expect(sut.update(fakeUser.ops[0]._id)).rejects.toThrow(new MissingParamError('accessToken'))
   })
 })
