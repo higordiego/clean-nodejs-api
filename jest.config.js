@@ -2,6 +2,7 @@
 module.exports = {
   coverageDirectory: 'coverage',
   testEnvironment: 'node',
-  collectCoverageFrom: ['**/src/**/*.js', '!**/src/main/**.js'],
+  collectCoverageFrom: ['**/src/**/*.js'],
+  modulePathIgnorePatterns: ['src/main'],
   preset: '@shelf/jest-mongodb'
 }
