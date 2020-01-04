@@ -6,7 +6,10 @@ const makeSut = () => {
   const authUseCaseSpy = MakeAuthUseCase()
   authUseCaseSpy.acessToken = 'valid_token'
   const emailValidatorSpy = makeEmailValidator()
-  const sut = new LoginRouter(authUseCaseSpy, emailValidatorSpy)
+  const sut = new LoginRouter({
+    authUseCase: authUseCaseSpy,
+    emailValidator: emailValidatorSpy
+  })
   return { authUseCaseSpy, sut, emailValidatorSpy }
 }
 
