@@ -1,3 +1,6 @@
+const { Router } = require('express')
+const fb = require('fast-glob')
 module.exports = app => {
-  app.post('/', (req, res) => res.json())
+  app.use('/api', Router)
+  fb.sync('**/src/main/routes/**.js').forEach(file => require(`../../../${file}`)(Router))
 }
