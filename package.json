@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "start": "node src/main/index.js",
-    "test": "jest --silent --colors --passWithNoTests",
+    "test": "jest --silent --colors --passWithNoTests --runInBand",
     "test:unit": "yarn run test -- --watch -c jest-unit-config.js",
     "test:integration": "yarn run test -- --watchAll -c jest-integration-config.js",
     "test:staged": "yarn run test -- --findRelatedTests",
