@@ -24,6 +24,6 @@ describe('Login Routes', () => {
     })
     request(app)
       .post('/api/login')
-      .send({ email: 'valid_email@mail.com', password: '13245' })
-  }).expect(200)
+      .send({ email: 'valid_email@mail.com', password: '13245' }).expect(200)
+  })
 })
