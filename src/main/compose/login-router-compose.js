@@ -1,0 +1,17 @@
+const LoginRouter = require('../../presentation/routes/login-router')
+const AuthUseCase = require('../../domains/usecases/auth-usecase')
+const EmailValidator = require('../../utils/helpers/email-validator')
+const LoadUserByEmailRepository = require('../../infra/repository/load-user-by-email-repository')
+const UpdateAccessTokenRepository = require('../../infra/repository/update-access-token-repository')
+const Encrypter = require('../../utils/helpers/encrypter')
+const TokenGenerator = require('../../utils/helpers/token-generator')
+const { tokenSecret } = require('../config/env')
+
+const loadUserByEmailRepository = new LoadUserByEmailRepository()
+const updateAccessTokenRepository = new UpdateAccessTokenRepository()
+const emailValidator = new EmailValidator()
+const encrypter = new Encrypter(tokenSecret)
+const tokenGenerator = new TokenGenerator()
+const authUseCase = new AuthUseCase({ loadUserByEmailRepository, updateAccessTokenRepository, encrypter, tokenGenerator })
+
+module.exports = new LoginRouter({ authUseCase, emailValidator })
