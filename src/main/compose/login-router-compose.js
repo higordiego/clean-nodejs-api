@@ -12,8 +12,8 @@ module.exports = class LoginRouterCompose {
     const loadUserByEmailRepository = new LoadUserByEmailRepository()
     const updateAccessTokenRepository = new UpdateAccessTokenRepository()
     const emailValidator = new EmailValidator()
-    const encrypter = new Encrypter(tokenSecret)
-    const tokenGenerator = new TokenGenerator()
+    const encrypter = new Encrypter()
+    const tokenGenerator = new TokenGenerator(tokenSecret)
     const authUseCase = new AuthUseCase({ loadUserByEmailRepository, updateAccessTokenRepository, encrypter, tokenGenerator })
     return new LoginRouter({ authUseCase, emailValidator })
   }

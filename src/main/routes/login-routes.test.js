@@ -20,16 +20,16 @@ describe('Login Routes', () => {
   test('Should 200 when valid crendetials are provider', async () => {
     await userModel.insertOne({
       email: 'valid_email@mail.com',
-      password: bcrypt.hashSync('hashed_password', 10)
+      password: bcrypt.hashSync('13245', 10)
     })
-    request(app)
+    await request(app)
       .post('/api/login')
       .send({ email: 'valid_email@mail.com', password: '13245' }).expect(200)
   })
 
-  test('Should 401 when invalid crendetials are provider', () => {
-    request(app)
+  test('Should 401 when invalid crendetials are provider', async () => {
+    await request(app)
       .post('/api/login')
-      .send({ email: 'valid_email@mail.com', password: '13245' }).expect(200)
+      .send({ email: 'valid_email@mail.com', password: '13245' }).expect(401)
   })
 })

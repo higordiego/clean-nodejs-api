@@ -55,11 +55,11 @@ const makeTokenGenerator = () => {
 
 const makeSut = () => {
   const encrypter = makeEncrypter()
-  const updateAcessTokenRepository = makeUpdateAcessTokenRepository()
+  const updateAccessTokenRepository = makeUpdateAcessTokenRepository()
   const loadUserByEmailRepository = makeloadUserByEmailRepository()
   const tokenGenerator = makeTokenGenerator()
-  const sut = new AuthUseCase({ loadUserByEmailRepository, encrypter, tokenGenerator, updateAcessTokenRepository })
-  return { sut, loadUserByEmailRepository, encrypter, tokenGenerator, updateAcessTokenRepository }
+  const sut = new AuthUseCase({ loadUserByEmailRepository, encrypter, tokenGenerator, updateAccessTokenRepository })
+  return { sut, loadUserByEmailRepository, encrypter, tokenGenerator, updateAccessTokenRepository }
 }
 
 describe('Auth UseCase', () => {
@@ -123,11 +123,11 @@ describe('Auth UseCase', () => {
   })
 
   test('Should call UpdateAcessTokenRepository with correct values', async () => {
-    const { sut, loadUserByEmailRepository, tokenGenerator, updateAcessTokenRepository } = makeSut()
+    const { sut, loadUserByEmailRepository, tokenGenerator, updateAccessTokenRepository } = makeSut()
     await sut.auth('valid@hotmail.com', 'valid_password')
     // expect(updateAcessTokenRepository.userId).toBe(loadUserByEmailRepository.user.id)
-    expect(updateAcessTokenRepository.userId).toBe(loadUserByEmailRepository.user._id)
-    expect(updateAcessTokenRepository.accessToken).toBe(tokenGenerator.accessToken)
+    expect(updateAccessTokenRepository.userId).toBe(loadUserByEmailRepository.user._id)
+    expect(updateAccessTokenRepository.accessToken).toBe(tokenGenerator.accessToken)
     // expect(updateAcessTokenRepository.accessToken).toBe(tokenGenerator.accessToken)
   })
 })
