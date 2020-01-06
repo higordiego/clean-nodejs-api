@@ -7,10 +7,10 @@
   "license": "MIT",
   "scripts": {
     "start": "node src/main/index.js",
-    "test": "jest --colors --noStackTrace --passWithNoTests --runInBand",
+    "test": "jest --colors --noStackTrace --passWithNoTests --runInBand --detectOpenHandles --forceExit",
     "test:unit": "yarn test -- --watch -c jest-unit-config.js",
     "test:integration": "yarn test -- --watchAll -c jest-integration-config.js",
-    "test:staged": "yarn test -- --findRelatedTests --silent",
+    "test:staged": "yarn test -- --silent --detectOpenHandles --forceExit",
     "test:ci": "yarn test -- --coverage --silent"
   },
   "standard": {
