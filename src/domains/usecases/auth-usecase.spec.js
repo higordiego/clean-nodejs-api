@@ -24,7 +24,7 @@ const makeloadUserByEmailRepository = () => {
   }
   const loadUserByEmailRepository = new LoadUserByEmailRepositorySpy()
   loadUserByEmailRepository.user = {
-    id: 'any_id',
+    _id: 'any_id',
     password: 'hasjed_password'
   }
   return loadUserByEmailRepository
@@ -112,7 +112,7 @@ describe('Auth UseCase', () => {
     const { sut, loadUserByEmailRepository, encrypter, tokenGenerator } = makeSut()
     await sut.auth('valid@hotmail.com', 'any_password')
     expect(encrypter.password).toBe('any_password')
-    expect(tokenGenerator.userId).toBe(loadUserByEmailRepository.user.id)
+    expect(tokenGenerator.userId).toBe(loadUserByEmailRepository.user._id)
   })
 
   test('Should return and acessToken if correct credentials are provider', async () => {
@@ -126,7 +126,7 @@ describe('Auth UseCase', () => {
     const { sut, loadUserByEmailRepository, tokenGenerator, updateAcessTokenRepository } = makeSut()
     await sut.auth('valid@hotmail.com', 'valid_password')
     // expect(updateAcessTokenRepository.userId).toBe(loadUserByEmailRepository.user.id)
-    expect(updateAcessTokenRepository.userId).toBe(loadUserByEmailRepository.user.id)
+    expect(updateAcessTokenRepository.userId).toBe(loadUserByEmailRepository.user._id)
     expect(updateAcessTokenRepository.accessToken).toBe(tokenGenerator.accessToken)
     // expect(updateAcessTokenRepository.accessToken).toBe(tokenGenerator.accessToken)
   })
