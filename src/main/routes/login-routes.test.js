@@ -27,9 +27,9 @@ describe('Login Routes', () => {
       .send({ email: 'valid_email@mail.com', password: '13245' }).expect(200)
   })
 
-  test('Should 401 when invalid crendetials are provider', async () => {
+  test('Should 401 when invalid crendetials are provider', () => {
     request(app)
       .post('/api/login')
-      .send({ email: 'valid_email@mail.com', password: '13245' }).expect(401)
+      .send({ email: 'valid_email@mail.com', password: '13245' }).expect(200)
   })
 })
