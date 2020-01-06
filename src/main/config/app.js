@@ -4,7 +4,7 @@ const app = express()
 
 const setuApp = require('./setup')
 const setupRoutes = require('./routes')
-setupRoutes(app)
 setuApp(app)
+setupRoutes(app)
 
 module.exports = app
