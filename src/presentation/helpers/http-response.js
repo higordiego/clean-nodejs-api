@@ -1,29 +1,37 @@
-const UnauthorizedError = require('../errors/unauthorized-error')
-const ServerError = require('../errors/server-error')
+const { UnauthorizedError, ServerError } = require('../errors')
 
-module.exports = class httpResponse {
-  static ok (data) {
+module.exports = class HttpResponse {
+  static ok (body) {
     return {
       statusCode: 200,
-      body: data
+      body
     }
   }
 
   static badRequest (error) {
     return {
       statusCode: 400,
-      body: error
+      body: {
+        error: error.message
+      }
     }
-  }
-
-  static serverError (paramName) {
-    return { statusCode: 500, body: new ServerError() }
   }
 
   static unauthorizedError () {
     return {
       statusCode: 401,
-      body: new UnauthorizedError()
+      body: {
+        error: new UnauthorizedError().message
+      }
+    }
+  }
+
+  static serverError () {
+    return {
+      statusCode: 500,
+      body: {
+        error: new ServerError().message
+      }
     }
   }
 }

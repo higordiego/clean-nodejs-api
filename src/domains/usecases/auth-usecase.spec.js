@@ -125,9 +125,7 @@ describe('Auth UseCase', () => {
   test('Should call UpdateAcessTokenRepository with correct values', async () => {
     const { sut, loadUserByEmailRepository, tokenGenerator, updateAccessTokenRepository } = makeSut()
     await sut.auth('valid@hotmail.com', 'valid_password')
-    // expect(updateAcessTokenRepository.userId).toBe(loadUserByEmailRepository.user.id)
     expect(updateAccessTokenRepository.userId).toBe(loadUserByEmailRepository.user._id)
     expect(updateAccessTokenRepository.accessToken).toBe(tokenGenerator.accessToken)
-    // expect(updateAcessTokenRepository.accessToken).toBe(tokenGenerator.accessToken)
   })
 })
