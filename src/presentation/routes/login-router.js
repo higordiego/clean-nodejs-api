@@ -12,9 +12,9 @@ module.exports = class LoginRouter {
       if (!email) return httpResponse.badRequest(new MissingParamError('email'))
       if (!this.emailValidator.isValid(email)) return httpResponse.badRequest(new InvalidParamError('email'))
       if (!password) return httpResponse.badRequest(new MissingParamError('password'))
-      const acessToken = await this.authUseCase.auth(email, password)
-      if (!acessToken) return httpResponse.unauthorizedError()
-      return httpResponse.ok({ acessToken })
+      const accessToken = await this.authUseCase.auth(email, password)
+      if (!accessToken) return httpResponse.unauthorizedError()
+      return httpResponse.ok({ accessToken })
     } catch (err) {
       return httpResponse.serverError()
     }
